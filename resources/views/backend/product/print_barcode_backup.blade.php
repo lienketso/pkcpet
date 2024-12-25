@@ -246,9 +246,9 @@
                     }
                     else if($('input[name="price"]').is(":checked")) {
                         if(currency_position[index] == 'prefix')
-                            htmltext += 'Price: '+currency[index]+' '+price[index];
+                            htmltext += 'Giá: '+currency[index]+' '+price[index];
                         else
-                            htmltext += 'Price: '+price[index]+' '+currency[index];
+                            htmltext += 'Giá: '+price[index]+' '+currency[index];
                     }
                     htmltext +='</td>';
                     if(i % 2 != 0)
