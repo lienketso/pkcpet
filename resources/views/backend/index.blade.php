@@ -66,7 +66,7 @@
                   <div class="wrapper count-title">
                     <div class="icon"><i class="dripicons-graph-bar" style="color: #733686"></i></div>
                     <div>
-                        <div class="count-number revenue-data">{{number_format((float)$revenue,$general_setting->decimal, '.', '')}}</div>
+                        <div class="count-number revenue-data">{{number_format((float)$revenue)}}</div>
                         <div class="name"><strong style="color: #733686">{{ trans('file.revenue') }}</strong></div>
                     </div>
                   </div>
@@ -76,7 +76,7 @@
                   <div class="wrapper count-title">
                     <div class="icon"><i class="dripicons-return" style="color: #ff8952"></i></div>
                     <div>
-                        <div class="count-number return-data">{{number_format((float)$return,$general_setting->decimal, '.', '')}}</div>
+                        <div class="count-number return-data">{{number_format((float)$return)}}</div>
                         <div class="name"><strong style="color: #ff8952">{{trans('file.Sale Return')}}</strong></div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                   <div class="wrapper count-title">
                     <div class="icon"><i class="dripicons-media-loop" style="color: #00c689"></i></div>
                     <div>
-                        <div class="count-number purchase_return-data">{{number_format((float)$purchase_return,$general_setting->decimal, '.', '')}}</div>
+                        <div class="count-number purchase_return-data">{{number_format((float)$purchase_return)}}</div>
                         <div class="name"><strong style="color: #00c689">{{trans('file.Purchase Return')}}</strong></div>
                     </div>
                   </div>
@@ -96,7 +96,7 @@
                   <div class="wrapper count-title">
                     <div class="icon"><i class="dripicons-trophy" style="color: #297ff9"></i></div>
                     <div>
-                        <div class="count-number profit-data">{{number_format((float)$profit,$general_setting->decimal, '.', '')}}</div>
+                        <div class="count-number profit-data">{{number_format((float)$profit)}}</div>
                         <div class="name"><strong style="color: #297ff9">{{trans('file.profit')}}</strong></div>
                     </div>
                   </div>
@@ -126,7 +126,7 @@
             <div class="col-md-5 mt-4">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                  <h4>{{date('F')}} {{date('Y')}}</h4>
+                  <h4>Tháng {{date('m')}} năm {{date('Y')}}</h4>
                 </div>
                 <div class="pie-chart mb-2">
                     <canvas id="transactionChart" data-color = "{{$color}}" data-color_rgba = "{{$color_rgba}}" data-revenue={{$revenue}} data-purchase={{$purchase}} data-expense={{$expense}} data-label1="{{trans('file.Purchase')}}" data-label2="{{trans('file.revenue')}}" data-label3="{{trans('file.Expense')}}" width="100" height="95"> </canvas>
@@ -253,7 +253,7 @@
             <div class="col-md-5">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                  <h4>{{trans('file.Best Seller').' '.date('F')}}</h4>
+                  <h4>{{trans('file.Best Seller').' tháng '.date('m')}}</h4>
                   <div class="right-column">
                     <div class="badge badge-primary">{{trans('file.top')}} 5</div>
                   </div>

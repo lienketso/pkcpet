@@ -170,7 +170,20 @@ class HomeController extends Controller
 
             $payment_recieved[] = number_format((float)($recieved_amount + $purchase_return_amount), config('decimal'), '.', '');
             $payment_sent[] = number_format((float)$sent_amount, config('decimal'), '.', '');
-            $month[] = date("F", strtotime($start_date));
+            $month[] = match(date("m", strtotime($start_date))) {
+                '01' => 'Tháng Một',
+                '02' => 'Tháng Hai', 
+                '03' => 'Tháng Ba',
+                '04' => 'Tháng Tư',
+                '05' => 'Tháng Năm',
+                '06' => 'Tháng Sáu',
+                '07' => 'Tháng Bảy',
+                '08' => 'Tháng Tám', 
+                '09' => 'Tháng Chín',
+                '10' => 'Tháng Mười',
+                '11' => 'Tháng Mười Một',
+                '12' => 'Tháng Mười Hai'
+            };
             $start = strtotime("+1 month", $start);
         }
         // yearly report
