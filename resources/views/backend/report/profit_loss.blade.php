@@ -10,7 +10,7 @@
                     <label class="d-tc mt-2"><strong>{{trans('file.Choose Your Date')}}</strong> &nbsp;</label>
                     <div class="d-tc">
                         <div class="input-group">
-                            <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} To {{$end_date}}" required />
+                            <input type="text" class="daterangepicker-field-custom form-control" value="{{$start_date}} đến {{$end_date}}" required />
                             <input type="hidden" name="start_date" value="{{$start_date}}" />
                             <input type="hidden" name="end_date" value="{{$end_date}}" />
                             <div class="input-group-append">
@@ -88,7 +88,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-md-4">
-                <div class="card"> 
+                <div class="card">
                     <div class="card-body">
 
                         <h3><i class="fa fa-money"></i> {{trans('file.profit')}} / {{trans('file.Loss')}}</h3>
@@ -245,20 +245,60 @@
 
 @push('scripts')
 <script type="text/javascript">
-
     $("ul#report").siblings('a').attr('aria-expanded','true');
     $("ul#report").addClass("show");
     $("ul#report #profit-loss-report-menu").addClass("active");
 
-    $(".daterangepicker-field").daterangepicker({
-      callback: function(startDate, endDate, period){
-        var start_date = startDate.format('YYYY-MM-DD');
-        var end_date = endDate.format('YYYY-MM-DD');
-        var title = start_date + ' To ' + end_date;
-        $(this).val(title);
+    moment.locale('vi');
+
+    $(".daterangepicker-field-custom").daterangepicker({
+        locale: {
+            format: 'DD-MM-YYYY',
+            separator: ' đến ',
+            applyLabel: 'Áp dụng',
+            cancelLabel: 'Hủy',
+            fromLabel: 'Từ',
+            toLabel: 'Đến',
+            customRangeLabel: 'Tùy chỉnh',
+            weekLabel: 'T',
+            daysOfWeek: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            monthNames: [
+                'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+            ],
+            firstDay: 1,
+            yearLabel: 'Năm',
+            monthLabel: 'Tháng',
+            dayLabel: 'Ngày',
+            weekLabel: 'Tuần'
+        },
+        opens: 'left',
+        autoUpdateInput: false,
+        showDropdowns: true,
+        ranges: {
+            'Hôm nay': [moment(), moment()],
+            'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            '7 ngày trước': [moment().subtract(6, 'days'), moment()],
+            '30 ngày trước': [moment().subtract(29, 'days'), moment()],
+            'Tháng này': [moment().startOf('month'), moment().endOf('month')],
+            'Tháng trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, function(start, end) {
+        var start_date = start.format('DD-MM-YYYY');
+        var end_date = end.format('DD-MM-YYYY'); 
+        var title = start_date + ' đến ' + end_date;
+        
+        $(".daterangepicker-field-custom").val(title);
         $('input[name="start_date"]').val(start_date);
         $('input[name="end_date"]').val(end_date);
-      }
+    });
+
+    $(".daterangepicker-field-custom").on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' đến ' + picker.endDate.format('DD-MM-YYYY'));
+    });
+
+    $(".daterangepicker-field-custom").on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
     });
 </script>
 @endpush

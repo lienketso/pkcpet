@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -78,8 +79,15 @@ class Common
         });
         View::share('role_has_permissions_list', $role_has_permissions_list);
 
+//        $categories_list = Cache::remember('category_list', 60*60*24*365, function () {
+//            return DB::table('categories')->where('is_active', true)->get();
+//        });
         $categories_list = Cache::remember('category_list', 60*60*24*365, function () {
-            return DB::table('categories')->where('is_active', true)->get();
+            return Category::with(['children' => function($query) {
+                $query->where('is_active', true);
+            }])
+                ->where('is_active', true)
+                ->get();
         });
         View::share('categories_list', $categories_list);
         return $next($request);

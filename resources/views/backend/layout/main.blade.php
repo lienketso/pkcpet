@@ -478,7 +478,10 @@
                           <select name="parent_id" class="form-control selectpicker" id="parent">
                               <option value="">No {{trans('file.parent')}}</option>
                               @foreach($categories_list as $category)
-                              <option value="{{$category->id}}">{{$category->name}}</option>
+                                  @if(!$category->parent_id)
+                                      <option value="{{$category->id}}">{{$category->name}}</option>
+                                      @include('backend.partials.category_option', ['category' => $category, 'prefix' => '--'])
+                                  @endif
                               @endforeach
                           </select>
                       </div>

@@ -892,5 +892,6 @@ return [
 	"Yes" => "Yes",
 	"No" => "No",
 	"Returned" => "Returned",
+    "Checkout" => "Checkout",
 ];
 ?>

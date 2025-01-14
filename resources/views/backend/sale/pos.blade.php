@@ -52,12 +52,12 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                       <div class="form-group">
-                                          <input type="text" name="created_at" class="form-control date" placeholder="Choose date" onkeyup='saveValue(this);'/>
+                                          <input type="text" name="created_at" value="{{date('d-m-Y')}}" class="form-control date" placeholder="Chọn ngày" onkeyup='saveValue(this);'/>
                                       </div>
                                     </div>
                                     <div class="col-md-3">
                                       <div class="form-group">
-                                          <input type="text" id="reference-no" name="reference_no" class="form-control" placeholder="Type reference number" onkeyup='saveValue(this);'/>
+                                          <input type="text" id="reference-no" name="reference_no" class="form-control" placeholder="Số tham chiếu" onkeyup='saveValue(this);'/>
                                       </div>
                                       @if($errors->has('reference_no'))
                                        <span>
@@ -160,7 +160,7 @@
                                             <option value="{{$currency_data->id}}" data-rate="{{$currency_data->exchange_rate}}">{{$currency_data->code}}</option>
                                             @endforeach
                                         </select>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-2">
                                         <div class="form-group d-flex">
                                             <input class="form-control" type="text" id="exchange_rate" name="exchange_rate" value="{{$currency->exchange_rate}}">
@@ -221,7 +221,7 @@
                                     @endforeach
                                     <div class="col-md-12">
                                         <div class="search-box form-group">
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Scan/Search product by name/code" class="form-control"  />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Quét/Tìm sản phẩm theo tên/mã" class="form-control"  />
                                         </div>
                                     </div>
                                 </div>
@@ -442,7 +442,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <button id="submit-btn" type="button" class="btn btn-primary">{{trans('file.submit')}}</button>
+                                        <button id="submit-btn" type="button" class="btn btn-primary">{{trans('file.Checkout')}}</button>
                                     </div>
                                 </div>
                                 <div class="col-md-2 qc" data-initial="1">
@@ -1400,7 +1400,7 @@ $('#currency').change(function(){
         currencyChange = true;
         checkDiscount($(this).val(), true);
         couponDiscount();
-    }); 
+    });
 });
 
 var localStorageQty = [];
@@ -2662,7 +2662,7 @@ function checkQuantity(sale_qty, flag) {
                     localStorageQty[rowindex] = sale_qty;
                     localStorage.setItem("localStorageQty", localStorageQty);
                     checkQuantity(sale_qty, true);
-                } 
+                }
                 else {
                     localStorageQty[rowindex] = sale_qty;
                     localStorage.setItem("localStorageQty", localStorageQty);

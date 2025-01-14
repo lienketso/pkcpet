@@ -107,10 +107,13 @@
                                     <div class="form-group">
                                         <label>{{trans('file.category')}} *</strong> </label>
                                         <div class="input-group">
-                                          <select name="category_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Category...">
-                                            @foreach($lims_category_list as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
+                                          <select name="category_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Chọn danh mục...">
+                                                @foreach($lims_category_list as $category)
+                                                    @if(!$category->parent_id)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @include('backend.partials.category_option', ['category' => $category, 'prefix' => '--'])
+                                                    @endif
+                                                @endforeach
                                           </select>
                                       </div>
                                       <span class="validation-msg"></span>
