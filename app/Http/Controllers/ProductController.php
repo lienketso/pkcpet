@@ -1481,7 +1481,17 @@ class ProductController extends Controller
 
            $lims_unit_data = Unit::where('unit_code', $data['unitcode'])->first();
            if(!$lims_unit_data)
-                return redirect()->back()->with('not_permitted', 'Unit code does not exist in the database.');
+                // return redirect()->back()->with('not_permitted', 'Unit code does not exist in the database.');
+                $lims_unit_data = Unit::firstOrCreate(
+                    ['unit_code' => $data['unitcode']],
+                    [
+                        'unit_name' => $data['unitcode'], // Sử dụng unitcode làm tên mặc định
+                        'base_unit' => null,
+                        'operator' => '*',
+                        'operation_value' => 1,
+                        'is_active' => true
+                    ]
+                );
 
            $product = Product::firstOrNew([ 'name'=>$data['name'], 'is_active'=>true ]);
             if($data['image'])
