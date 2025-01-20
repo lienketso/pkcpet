@@ -10,6 +10,20 @@ class Product extends Model
         "name", "code", "type", "barcode_symbology", "brand_id", "category_id", "unit_id", "purchase_unit_id", "sale_unit_id", "cost", "price", "qty", "alert_quantity", "daily_sale_objective", "promotion", "promotion_price", "starting_date", "last_date", "tax_id", "tax_method", "image", "file", "is_embeded", "is_batch", "is_variant", "is_diffPrice", "is_imei", "featured", "product_list", "variant_list", "qty_list", "price_list", "product_details", "variant_option", "variant_value", "is_active", "is_sync_disable", "woocommerce_product_id","woocommerce_media_id","tags","meta_title","meta_description"
     ];
 
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = $this->sanitizeNumber($value);
+    }
+
+    public function setCostAttribute($value)
+    {
+        $this->attributes['cost'] = $this->sanitizeNumber($value);
+    }
+    private function sanitizeNumber($value)
+    {
+        return (float) str_replace(',', '', $value);
+    }
+
     public function category()
     {
     	return $this->belongsTo('App\Models\Category');

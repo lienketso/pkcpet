@@ -156,14 +156,14 @@
                                 <div id="cost" class="col-md-4">
                                      <div class="form-group">
                                         <label>{{trans('file.Product Cost')}} *</strong> </label>
-                                        <input type="number" name="cost" required class="form-control" step="any">
+                                        <input type="text" oninput="formatNumberOnChange(this)" name="cost" required class="form-control" step="any">
                                         <span class="validation-msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>{{trans('file.Product Price')}} *</strong> </label>
-                                        <input type="number" name="price" required class="form-control" step="any">
+                                        <input type="text" oninput="formatNumberOnChange(this)" name="price" required class="form-control" step="any">
                                         <span class="validation-msg"></span>
                                     </div>
                                     <div class="form-group">

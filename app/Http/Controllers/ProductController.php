@@ -213,8 +213,8 @@ class ProductController extends Controller
                 else
                     $nestedData['unit'] = 'N/A';
 
-                $nestedData['price'] = $product->price;
-                $nestedData['cost'] = $product->cost;
+                $nestedData['price'] = number_format($product->price);
+                $nestedData['cost'] = number_format($product->cost);
 
                 if(config('currency_position') == 'prefix')
                     $nestedData['stock_worth'] = config('currency').' '.($nestedData['qty'] * $product->price).' / '.config('currency').' '.($nestedData['qty'] * $product->cost);

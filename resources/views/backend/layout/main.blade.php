@@ -427,7 +427,7 @@
                                 <input type="hidden" name="sender_id" value="{{\Auth::id()}}">
                               <label>{{trans('file.User')}} *</label>
                               <select id="receiver_id" name="receiver_id" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Select user...">
-                                  
+
                               </select>
                           </div>
                           <div class="col-md-4 form-group">
@@ -500,14 +500,14 @@
                       <div class="col-md-6 form-group">
                           <label>{{ __('Icon') }} (SVG format)</label>
                           <input type="file" name="icon" class="form-control">
-                      </div> 
+                      </div>
                       <div class="col-md-6 form-group">
                           <br>
                           <input type="checkbox" name="featured" id="featured" value="1"> <label>{{ __('List on category dropdown') }}</label>
                       </div>
                       @endif
                   </div>
-                  
+
                   @if(in_array('ecommerce',explode(',',$general_setting->modules)))
                   <div class="row">
                       <div class="col-md-12 mt-3">
@@ -1115,7 +1115,7 @@
             $('#notification-modal').modal();
           }
         });
-        
+
       });
 
       $("a#add-account").click(function(e){
@@ -1182,7 +1182,7 @@
             $('#warehouse-modal').modal();
           }
         });
-        
+
       });
 
       $("a#user-report-link").click(function(e){
@@ -1199,7 +1199,7 @@
             $('#user-modal').modal();
           }
         });
-        
+
       });
 
       $("a#customer-report-link").click(function(e){
@@ -1248,7 +1248,7 @@
             $('#supplier-modal').modal();
           }
         });
-        
+
       });
 
       $("a#due-report-link").click(function(e){
@@ -1282,5 +1282,23 @@
           style: 'btn-link',
       });
     </script>
+    <script type="text/javascript">
+        function formatNumberOnChange(input) {
+            // Lấy giá trị từ input và loại bỏ các ký tự không phải số hoặc dấu chấm
+            let value = input.value.replace(/[^0-9.]/g, '');
+
+            // Tách phần nguyên và phần thập phân (nếu có)
+            let parts = value.split('.');
+            let integerPart = parts[0]; // Phần nguyên
+            let decimalPart = parts[1] ? '.' + parts[1] : ''; // Phần thập phân
+
+            // Thêm dấu phân cách phần nghìn vào phần nguyên
+            let formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            // Gán lại giá trị đã định dạng vào ô input
+            input.value = formattedInteger + decimalPart;
+        }
+    </script>
+
   </body>
 </html>
